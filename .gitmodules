@@ -1,6 +1,0 @@
-[submodule "fahrenheit_celsius_converter"]
-	path = fahrenheit_celsius_converter
-	url = https://github.com/tackmas/fahrenheit_celsius_converter.git
-[submodule "guessing_game"]
-	path = guessing_game
-	url = https://github.com/tackmas/guessing_game.git
