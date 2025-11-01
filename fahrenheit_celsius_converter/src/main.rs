@@ -10,7 +10,7 @@ const CELSIUS_MAX_F64: f64 = (5.0/9.0) * (std::f64::MAX - 32.0); /* For large po
                                                                     This could go above the max floating point value after the conversion. 
                                                                     Therefore we set a lower max for Celsius, if converted to Fahrenheit equals std::f64::MAX and not higher.
                                                                 */
-const FAHRENHEIT_MAX_F64: f64 = std::f64::MAX;
+
 
 use std::io;
 
@@ -46,23 +46,23 @@ fn fahrenheit_to_celsius() {
             .read_line(&mut input)
             .expect("Something went wrong! (2)");
 
-        break match input.trim().parse() {
+        break match input.trim().parse::<f64>() {
             Ok(fahrenheit) => {
                 if fahrenheit < FAHRENHEIT_ABSOLUTE_ZERO {
                     println!("That's below absolute zero! Please input a valid temperature:");
                     continue
-                } else if fahrenheit > FAHRENHEIT_MAX_F64 {
+                } else if fahrenheit.is_infinite() {
                     println!("Too great of a number! The computer can't hold its greatness! Please enter a 'lesser number' that the computer can behold.");
-                    continue;
+                    continue
                 } else {
                     fahrenheit
                 }
             }
             Err(_) => {
                 println!("Please input a valid integer:");
-                continue;
+                continue
             }    
-        };
+        }
     };
 
     let celsius = (5.0/9.0) * (fahrenheit - 32.0); 
@@ -80,7 +80,7 @@ fn celsius_to_fahrenheit() {
             .read_line(&mut input)
             .expect("Something went wrong! (2)");
 
-        break match input.trim().parse() {
+        break match input.trim().parse::<f64>() {
             Ok(celsius) => {
                 if celsius < CELSIUS_ABSOLUTE_ZERO {
                     println!("That's below absolute zero! Please input a valid temperature:");
