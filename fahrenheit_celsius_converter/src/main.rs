@@ -59,7 +59,7 @@ fn fahrenheit_to_celsius() {
                 }
             }
             Err(_) => {
-                println!("Please input a valid integer:");
+                println!("Please input a valid temperature:");
                 continue
             }    
         }

@@ -1,8 +1,7 @@
 use std::io;
 
-
 fn main() {
-    println!("Which Fibonacci number do you want to find?")
+    println!("Which Fibonacci number do you want to find?");
 
     let fibonacci_index: u64 = loop {
         let mut input = String::new();
@@ -11,42 +10,38 @@ fn main() {
             .read_line(&mut input)
             .expect("Something went wrong! (1)");
 
-        let input: u64 = match input.trim().parse::u64() {
-            Ok(num) = {
-                if num >= 0 {
-                    num
-                } else {
-                    println!("Input must be a valid positive integer!");
-                    continue
-                }
-            }
-            Err(_) = {
+        break match input.trim().parse::<u64>() {
+            Ok(num) => num,
+            Err(_) => {
                 println!("You have entered a invalid input. Please write a valid positive integer.");
                 continue
             }
-        }
+        };
     };
 
     fibonacci_number(fibonacci_index);
 }
 
 fn fibonacci_number(f_index: u64) {
-    match f_index {
-        0 => println!("Fibonacci number 0 is equal to 0"),
-        1 => println!("Fibonacci number 1 is equal to 1"),
+    if f_index == 0 {
+        println!("Fibonacci number 0 is equal to 0.");
+        return;
+    } else if f_index == 1 {
+        println!("Fibonacci number 1 is equal to 1.");
+        return;
     };
 
-    let mut a = 0;
-    let mut b = 1;
-    let mut c = a + b;
+    let mut a: u128 = 0;
+    let mut b: u128 = 1;
+    let mut c: u128 = 0;
 
-    for i in (2..f_index) {
+    for _ in 2..=f_index {
+        c = a + b;
         a = b;
         b = c;
-        c = a + b;
-    }
+    };
 
-    println!("Fibonacci number {f_index} is equal to {c}");
+    println!("Fibonacci number {f_index} is equal to {c}.");
 }
 
 
