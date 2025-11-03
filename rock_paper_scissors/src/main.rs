@@ -69,12 +69,12 @@ fn play_again() -> bool {
 
         input = input.trim().to_lowercase();
 
-        return if input == "yes" { 
+        if input == "yes" { 
             println!("One more round it is!");
-            true
+            return true
         } else if input == "no" { 
             println!("Bye!");
-            false
+            return false
         } else { 
             println!("You did not input a valid choice. Please write one of the following: 'yes' or 'no'.");
             continue
